@@ -37,6 +37,25 @@
             bindings = <&kp>, <&kp>;
         };
 
+        mt_hp: mod_hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            require-prior-idle-ms = <125>;
+            hold-trigger-on--press;
+            bindings = <&kp>, <&kp>;
+        };
+
+        lt_hp: layer_tap_hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            require-prior-idle-ms = <125>;
+            bindings = <&mo>, <&kp>;
+        };
+
         tap_dance_layer_1and2: tap_dance_layer_1and2 {
             compatible = "zmk,behavior-tap-dance";
             label = "td_mo12";
@@ -71,20 +90,20 @@
         DEFAULT_LAYER {
             display-name = "Default";
             bindings = <
-&kp Q              &kp W      &kp E         &kp R      &kp T                                     &kp Y      &kp U     &kp I           &kp O           &kp P
-&kp A              &kp S      &kp D         &kp F      &kp G                                     &kp H      &kp J     &kp K           &kp L           &kp SEMI
-&mt2 LEFT_SHIFT Z  &kp X      &kp C         &kp V      &kp B                                     &kp N      &kp M     &kp COMMA       &kp PERIOD      &kp SLASH
-&kp LCTRL          &kp LWIN   &kp LEFT_ALT  &mo 2      &kp SPACE  &kp LEFT_SHIFT  &kp BACKSPACE  &kp ENTER  &mo 1     &ime_toggle     &ime_toggle     &ime_toggle
-                   &none      &kp RIGHT     &kp DOWN   &kp LEFT   &kp UP          &kp UP         &kp LEFT   &kp DOWN  &kp RIGHT       &kp C_MUTE
-&mkp LCLK          &mkp RCLK  &mkp MCLK                                                                               &mkp LCLK       &mkp RCLK       &mkp MCLK
-&mkp MB4           &mkp MB5   &kp LG(TAB)   &kp LG(D)  &kp LCTRL                                 &mkp MB4   &mkp MB5  &kp LG(TAB)     &kp LG(D)       &kp LCTRL
+&kp Q              &kp W      &kp E         &kp R      &kp T                                            &kp Y      &kp U     &kp I           &kp O           &kp P
+&mt2 LEFT_ALT A    &mt2 LEFT_SHIFT S  &mt2 LWIN D  &mt2 LEFT_CTRL F  &kp G                              &kp H      &kp J     &kp K           &kp L           &kp SEMI
+&mt2 LEFT_SHIFT Z  &kp X      &kp C         &kp V      &kp B                                            &mt_hp LWIN N      &kp M     &kp COMMA       &kp PERIOD      &mt_hp RIGHT_SHIFT SLASH
+&kp LCTRL          &kp LEFT_ALT   &kp LEFT_WIN  &mo 2  &mt2 LEFT_SHIFT SPACE  &kp LEFT_ALT      &mt_hp LWIN BACKSPACE  &mt2 LCTRL ENTER  &lt_hp 1 ENTER     &ime_toggle     &ime_toggle     &ime_toggle
+                   &none      &kp RIGHT     &kp DOWN   &kp LEFT   &kp UP          &kp UP                &kp LEFT   &kp DOWN  &kp RIGHT       &kp C_MUTE
+&mkp LCLK          &mkp RCLK  &mkp MCLK                                                                                       &mkp LCLK       &mkp RCLK       &mkp MCLK
+&mkp MB4           &mkp MB5   &kp LG(TAB)   &kp LG(D)  &kp LCTRL                                        &mkp MB4   &mkp MB5  &kp LG(TAB)     &kp LG(D)       &kp LCTRL
             >;
         };
 
         SECONDARY_LAYER {
             display-name = "secondary_layer";
             bindings = <
-&kp F1      &kp F2       &kp F3  &kp F4  &kp F5                                            &kp F6    &kp F7    &kp SQT  &kp BACKSLASH  &kp TILDE
+&kp F1      &kp F2       &kp F3  &kp F4  &kp F5                                            &kp F6     &kp SQT  &kp BACKSLASH  &kp TILDE &kp DELETE
 &kp NUMBER_6      &kp N7             &kp N8        &kp N9        &kp N0                    &kp LEFT          &kp DOWN           &kp UP           &kp RIGHT        &mt2 EQUAL MINUS
 &kp F6            &kp F7             &kp F8        &kp F9        &kp F10                   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS    &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp KP_ASTERISK
 &trans            &trans             &trans        &trans        &trans   &trans  &kp DEL  &trans            &trans             &kp KP_NUMBER_0  &kp KP_DOT       &kp KP_DIVIDE
